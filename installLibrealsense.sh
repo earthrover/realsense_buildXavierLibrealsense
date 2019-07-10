@@ -1,10 +1,10 @@
 #!/bin/bash
 # Builds the Intel Realsense library librealsense2 on a Jetson AGX Xavier Developer Kit
-# Copyright (c) 2016-19 Jetsonhacks 
+# Copyright (c) 2016-19 Jetsonhacks
 # MIT License
 
 LIBREALSENSE_DIRECTORY=${HOME}/librealsense
-LIBREALSENSE_VERSION=v2.17.1
+LIBREALSENSE_VERSION=v2.23.0
 INSTALL_DIR=$PWD
 
 
@@ -88,7 +88,7 @@ sudo cp config/99-realsense-libusb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && udevadm trigger
 
 # Now compile librealsense and install
-mkdir build 
+mkdir build
 cd build
 # Build examples, including graphical ones
 echo "${green}Configuring Make system${reset}"
@@ -109,7 +109,7 @@ else
   echo "librealsense did not build " >&2
   echo "Retrying ... "
   # Single thread this time
-  time make 
+  time make
   if [ $? -eq 0 ] ; then
     echo "librealsense make successful"
   else
@@ -130,6 +130,3 @@ echo "The demos and tools are located in /usr/local/bin"
 echo " "
 echo " -----------------------------------------"
 echo " "
-
-
-

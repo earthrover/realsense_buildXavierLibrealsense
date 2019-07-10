@@ -1,10 +1,10 @@
 #!/bin/bash
 # Patch the kernel for the Intel Realsense library librealsense on a Jetson AGX Xavier Developer Kit
-# Copyright (c) 2016-19 Jetsonhacks 
+# Copyright (c) 2016-19 Jetsonhacks
 # MIT License
 
 LIBREALSENSE_DIRECTORY=${HOME}/librealsense
-LIBREALSENSE_VERSION=v2.20.0
+LIBREALSENSE_VERSION=v2.23.0
 
 
 function usage
@@ -50,7 +50,7 @@ set -e
 # The KERNEL_BUILD_VERSION is the release tag for the JetsonHacks buildKernel repository
 KERNEL_BUILD_VERSION=master
 # Quotes around Jetson Board because the name may have a space, ie "AGX Xavier"
-if [ "$JETSON_BOARD" == "AGX Xavier" ] ; then 
+if [ "$JETSON_BOARD" == "AGX Xavier" ] ; then
   L4TTarget="32.1.0"
   # Test for 32.1.0 first
   if [ $JETSON_L4T = "32.1.0" ] ; then
@@ -61,7 +61,7 @@ if [ "$JETSON_BOARD" == "AGX Xavier" ] ; then
    echo "==== L4T Kernel Version Mismatch! ============="
    tput sgr0
    echo ""
-   echo "This repository is for modifying the kernel for a L4T "$L4TTarget "system." 
+   echo "This repository is for modifying the kernel for a L4T "$L4TTarget "system."
    echo "You are attempting to modify a L4T "$JETSON_L4T "system."
    echo "The L4T releases must match!"
    echo ""
@@ -99,7 +99,7 @@ if [ ! -d "$LIBREALSENSE_DIRECTORY" ] ; then
          git checkout $LIBREALSENSE_VERSION
      ;;
      * )
-         echo "Kernel patch and build not started"   
+         echo "Kernel patch and build not started"
          exit 1
      ;;
    esac
@@ -142,5 +142,3 @@ echo "${green}The new kernel Image is in the directory named 'image'.${reset}"
 
 mkdir -p image
 cp /usr/src/kernel/kernel-4.9/arch/arm64/boot/Image ./image/Image
-
-
